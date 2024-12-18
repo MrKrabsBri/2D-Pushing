@@ -15,9 +15,9 @@ public class PlayerMovement : NetworkBehaviour {
 
     public Animator animator;
 
-    private NetworkVariable<float> facingDirection = new NetworkVariable<float>(
+ /*   private NetworkVariable<float> facingDirection = new NetworkVariable<float>(
         5f, NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Owner);
+        NetworkVariableWritePermission.Owner);*/
 
     /*    public void Awake() { // turetume overridinti OnNetworkSpawn() vietoj start arba awake metodu, nereiks Awake()
         }*/
@@ -57,21 +57,39 @@ public class PlayerMovement : NetworkBehaviour {
             animator.SetBool("MoveToLeft", false);
             animator.SetBool("MoveToRight", true);
 
-            facingDirection.Value = -Mathf.Abs(gameObject.transform.localScale.x);
+            /*facingDirection.Value = -Mathf.Abs(gameObject.transform.localScale.x);*/
+
+            // Update scale via RPC
+            UpdateFacingDirectionServerRpc(-Mathf.Abs(transform.localScale.x));
 
         }
         else if (movementDirection.x < 0) {
             animator.SetBool("MoveToRight", false);
             animator.SetBool("MoveToLeft", true);
 
-            facingDirection.Value = Mathf.Abs(gameObject.transform.localScale.x);
+            /*facingDirection.Value = Mathf.Abs(gameObject.transform.localScale.x);*/
+
+            // Update scale via RPC
+            UpdateFacingDirectionServerRpc(Mathf.Abs(transform.localScale.x));
 
         }
 
     }
-    public void Update() {
-        // Apply the synchronized facing direction
-        gameObject.transform.localScale = new Vector3(facingDirection.Value, transform.localScale.y, transform.localScale.z);
+    /*    public void Update() {
+            // Apply the synchronized facing direction
+            gameObject.transform.localScale = new Vector3(facingDirection.Value, transform.localScale.y, transform.localScale.z);
+        }*/
+
+    [ServerRpc]
+    void UpdateFacingDirectionServerRpc(float newScaleX) {
+        // Notify all clients of the change
+        UpdateFacingDirectionClientRpc(newScaleX);
+    }
+
+    [ClientRpc]
+    void UpdateFacingDirectionClientRpc(float newScaleX) {
+        // Apply the updated scale on all clients
+        gameObject.transform.localScale = new Vector3(newScaleX, transform.localScale.y, transform.localScale.z);
     }
 
 }
