@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using Unity.Netcode;
+using System;
 
 public class PlayerMovement : NetworkBehaviour {
 
@@ -14,8 +15,12 @@ public class PlayerMovement : NetworkBehaviour {
 
     public Animator animator;
 
-    public void Awake() { // turetume overridinti OnNetworkSpawn() vietoj start arba awake metodu, nereiks Awake()
-    }
+    public SpriteRenderer playerImage;
+    public Sprite playerFlipped;
+    public static Action turnToTheOtherSide;
+
+/*    public void Awake() { // turetume overridinti OnNetworkSpawn() vietoj start arba awake metodu, nereiks Awake()
+    }*/
 
 
     public override void OnNetworkSpawn() {
@@ -30,7 +35,7 @@ public class PlayerMovement : NetworkBehaviour {
 
 
 
-public void FixedUpdate() {
+    public void FixedUpdate() {
 
         if (!IsOwner) {
             return;
@@ -42,13 +47,24 @@ public void FixedUpdate() {
         transform.position += (movementDirection * playerSpeed * Time.fixedDeltaTime);
         animator.SetFloat("Speed", Mathf.Abs(horizontalMoveX * playerSpeed));
 
+
         if (movementDirection.x > 0) {
-            sr.flipX = true;
+            animator.SetBool("MoveToLeft", false);
+            animator.SetBool("MoveToRight", true);
+            //sr.flipX = true;
+
 
         }
         else if (movementDirection.x < 0) {
-            sr.flipX = false;
+            animator.SetBool("MoveToRight", false);
+            animator.SetBool("MoveToLeft", true);
+            //sr.flipX = false;
         }
 
+    }
+
+
+    public void flipSprite() {
+        turnToTheOtherSide?.Invoke();
     }
 }

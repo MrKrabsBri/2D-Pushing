@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2547175635812585226}
   - component: {fileID: 8158313927751898423}
   - component: {fileID: 8828837793966733899}
-  - component: {fileID: 962565612686966311}
+  - component: {fileID: 1556150450599489658}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 3081470760
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 3081470760
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -126,6 +126,8 @@ MonoBehaviour:
   playerSpeed: 5
   Camera: {fileID: 0}
   animator: {fileID: 8158313927751898423}
+  playerImage: {fileID: 0}
+  playerFlipped: {fileID: 0}
 --- !u!114 &2547175635812585226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +172,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 24a0f685f03b8da41901a778504d15ec, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -191,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnedObjectPrefab: {fileID: 7514056021064691144, guid: f797275f7f3f0dd4d984f1c7646f1e9b, type: 3}
---- !u!114 &962565612686966311
+--- !u!114 &1556150450599489658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,7 +202,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7302191869683627412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Script: {fileID: 11500000, guid: fddfd7e9ad913c94298e70826af46f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
