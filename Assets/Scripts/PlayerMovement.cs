@@ -9,18 +9,18 @@ public class PlayerMovement : NetworkBehaviour {
     public Camera Camera;
 
     Vector3 movementDirection;
-    float horizontalMoveX = 0f;
-    float verticalMoveY = 0f;
+    float moveHorizontalX = 0f;
+    float moveVerticalY = 0f;
     SpriteRenderer sr;
 
     public Animator animator;
 
-    public SpriteRenderer playerImage;
-    public Sprite playerFlipped;
-    public static Action turnToTheOtherSide;
+    private NetworkVariable<float> facingDirection = new NetworkVariable<float>(
+        5f, NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner);
 
-/*    public void Awake() { // turetume overridinti OnNetworkSpawn() vietoj start arba awake metodu, nereiks Awake()
-    }*/
+    /*    public void Awake() { // turetume overridinti OnNetworkSpawn() vietoj start arba awake metodu, nereiks Awake()
+        }*/
 
 
     public override void OnNetworkSpawn() {
@@ -30,6 +30,8 @@ public class PlayerMovement : NetworkBehaviour {
         sr = GetComponent<SpriteRenderer>();
         Camera = Camera.main;
         Camera.GetComponent<CameraFollow>().target = transform;
+        animator = GetComponent<Animator>();
+
 
     }
 
@@ -41,30 +43,35 @@ public class PlayerMovement : NetworkBehaviour {
             return;
         }
 
-        horizontalMoveX = Input.GetAxisRaw("Horizontal");
-        verticalMoveY = Input.GetAxisRaw("Vertical");
-        movementDirection = new Vector3(horizontalMoveX, verticalMoveY, 0).normalized;
+        // Move();
+
+        moveHorizontalX = Input.GetAxisRaw("Horizontal");
+        moveVerticalY = Input.GetAxisRaw("Vertical");
+
+        movementDirection = new Vector3(moveHorizontalX, moveVerticalY, 0).normalized;
         transform.position += (movementDirection * playerSpeed * Time.fixedDeltaTime);
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMoveX * playerSpeed));
+        animator.SetFloat("Speed", Mathf.Abs(moveHorizontalX * playerSpeed));
 
 
         if (movementDirection.x > 0) {
             animator.SetBool("MoveToLeft", false);
             animator.SetBool("MoveToRight", true);
-            //sr.flipX = true;
 
+            facingDirection.Value = -Mathf.Abs(gameObject.transform.localScale.x);
 
         }
         else if (movementDirection.x < 0) {
             animator.SetBool("MoveToRight", false);
             animator.SetBool("MoveToLeft", true);
-            //sr.flipX = false;
+
+            facingDirection.Value = Mathf.Abs(gameObject.transform.localScale.x);
+
         }
 
     }
-
-
-    public void flipSprite() {
-        turnToTheOtherSide?.Invoke();
+    public void Update() {
+        // Apply the synchronized facing direction
+        gameObject.transform.localScale = new Vector3(facingDirection.Value, transform.localScale.y, transform.localScale.z);
     }
+
 }
