@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - SolidObjects
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: NPC Layer
     uniqueID: 4036279585
+    locked: 0
+  - name: Foreground
+    uniqueID: 3018129985
     locked: 0
