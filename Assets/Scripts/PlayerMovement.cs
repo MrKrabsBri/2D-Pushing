@@ -80,6 +80,7 @@ public class PlayerMovement : NetworkBehaviour {
             gameObject.transform.localScale = new Vector3(facingDirection.Value, transform.localScale.y, transform.localScale.z);
         }*/
 
+
     [ServerRpc]
     void UpdateFacingDirectionServerRpc(float newScaleX) {
         // Notify all clients of the change
