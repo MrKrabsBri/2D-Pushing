@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a5b93d32762c76c4ab4818b49c2f74dc
+guid: 1b27f103aa595d5488d8c182130c24bf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Blocking_Template
+      name: Minus_Icon_0
       rect:
         serializedVersion: 2
-        x: 129
-        y: 4
-        width: 15
-        height: 15
+        x: 3
+        y: 3
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97528f1396ba77a44b7158a9c9be65c0
-      internalID: -678437804
+      spriteID: cc898808adbc94848aa3aa47f7c3d582
+      internalID: 906480209
       vertices: []
       indices: 
       edges: []
@@ -154,7 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Blocking_Template: -678437804
+      Minus_Icon_0: 906480209
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

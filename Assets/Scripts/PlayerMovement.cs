@@ -15,9 +15,9 @@ public class PlayerMovement : NetworkBehaviour {
 
     public Animator animator;
 
- /*   private NetworkVariable<float> facingDirection = new NetworkVariable<float>(
-        5f, NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Owner);*/
+    /*   private NetworkVariable<float> facingDirection = new NetworkVariable<float>(
+           5f, NetworkVariableReadPermission.Everyone,
+           NetworkVariableWritePermission.Owner);*/
 
     /*    public void Awake() { // turetume overridinti OnNetworkSpawn() vietoj start arba awake metodu, nereiks Awake()
         }*/
@@ -79,6 +79,7 @@ public class PlayerMovement : NetworkBehaviour {
             // Apply the synchronized facing direction
             gameObject.transform.localScale = new Vector3(facingDirection.Value, transform.localScale.y, transform.localScale.z);
         }*/
+
 
     [ServerRpc]
     void UpdateFacingDirectionServerRpc(float newScaleX) {

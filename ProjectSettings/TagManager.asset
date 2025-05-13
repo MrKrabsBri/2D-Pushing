@@ -12,11 +12,11 @@ TagManager:
   - Water
   - UI
   - 
-  - SolidObjects
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - WalkInFront
+  - Collision
+  - WalkBehind
+  - Decor
   - 
   - 
   - 
@@ -41,12 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Floor Layer
+  - name: Ground SR Layer
     uniqueID: 1882506519
     locked: 0
-  - name: NPC Layer
+  - name: WalkInFront SR Layer
     uniqueID: 4036279585
     locked: 0
-  - name: Foreground
+  - name: Collision SR Layer
     uniqueID: 3018129985
+    locked: 0
+  - name: Player SR Layer
+    uniqueID: 2816705373
+    locked: 0
+  - name: WalkBehind SR Layer
+    uniqueID: 1616852211
+    locked: 0
+  - name: Decor SR Layer
+    uniqueID: 1051996369
     locked: 0
