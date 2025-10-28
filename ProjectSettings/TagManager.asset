@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - Ground
+  - WalkInFront
+  - Collision
+  - WalkBehind
+  - Decor
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground SR Layer
+    uniqueID: 1882506519
+    locked: 0
+  - name: WalkInFront SR Layer
+    uniqueID: 4036279585
+    locked: 0
+  - name: Collision SR Layer
+    uniqueID: 3018129985
+    locked: 0
+  - name: Player SR Layer
+    uniqueID: 2816705373
+    locked: 0
+  - name: WalkBehind SR Layer
+    uniqueID: 1616852211
+    locked: 0
+  - name: Decor SR Layer
+    uniqueID: 1051996369
+    locked: 0
