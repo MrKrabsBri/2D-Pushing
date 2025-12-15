@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Flowers (Yellow)
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
-  type: 0
-  actionType: 0
+  type: 4
+  actionType: 4
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: 380340513, guid: 5e62499661e9277409fc395ae7ccb767, type: 3}
+  image: {fileID: -1334894087, guid: 219f278d60df0874cbcf70df404be8a4, type: 3}

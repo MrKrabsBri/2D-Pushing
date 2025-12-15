@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour {
@@ -50,39 +51,63 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
-
-    public bool AddItemToNextEmptySlot(Item item) {
-
+    public bool AddItemToNextEmptySlot(Item newItem) { // bool to see if item was added
+        // EDIT #########################
         // Check if any slot has the same item with count lower than max
-        for (int i = 0; i < inventorySlots.Length; i++) {
-            InventorySlot slot = inventorySlots[i];
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (itemInSlot != null && itemInSlot.item == item && itemInSlot.itemCount < maxStackItems
-            && itemInSlot.item.stackable == true) {
-                itemInSlot.itemCount++;
-                itemInSlot.RefreshItemCountText();
-                return true;
+        // TODO: checkas veikia kai jis yra ant pickable item script.
+        if (!InventoryIsFull()) {
+            for (int i = 0; i < inventorySlots.Length; i++) {
+                InventorySlot slot = inventorySlots[i];
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                if (itemInSlot != null && itemInSlot.item == newItem && itemInSlot.itemCount < maxStackItems
+                && itemInSlot.item.stackable == true) {
+                    itemInSlot.itemCount++;
+                    itemInSlot.RefreshItemCountText();
+                    return true;
+                }
             }
-        }
-
-        //find first empty slot
-        for (int i = 0; i < inventorySlots.Length; i++) {
-            InventorySlot slot = inventorySlots[i];
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (itemInSlot == null) {
-                SpawnNewItemInSlot(item, slot);
-                return true;
+            //find first empty slot
+            // TODO: ADD CHECK TO SEE WHEN INVENTORY IS FULL
+            for (int i = 0; i < inventorySlots.Length; i++) {
+                InventorySlot slot = inventorySlots[i];
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                if (itemInSlot == null) {
+                    SpawnNewItemInSlot(newItem, slot);
+                    return true;
+                }
             }
-        }
 
+        }
         return false;
     }
 
     void SpawnNewItemInSlot(Item item, InventorySlot inventorySlot) {
-        GameObject newItemGameObject = Instantiate(inventoryItemPrefab, inventorySlot.transform);
-        InventoryItem inventoryItem = newItemGameObject.GetComponent<InventoryItem>();
-        inventoryItem.InitializeItem(item);
+        if (!InventoryIsFull()) {
+            GameObject newItemGameObject = Instantiate(inventoryItemPrefab, inventorySlot.transform);
+            InventoryItem inventoryItem = newItemGameObject.GetComponent<InventoryItem>();
+            inventoryItem.InitializeItem(item);
+        }
+        else {
+            Debug.Log("Inventory is full and no more items can be added.");
+        }
+
     }
+
+    // turbut reikia fix!!!!!
+    public bool InventoryIsFull() {
+        Debug.Log("inventory slots taken: ");
+        foreach (InventorySlot inventorySlot in inventorySlots) {
+            if (inventorySlot.GetComponentInChildren<InventoryItem>() == null) {
+                Debug.Log(inventorySlot + "slot is taken");
+                return false;
+            }
+        }
+        return true;
+    }
+    /*    public bool InventoryIsFull() {
+            return itemsInInventory.Length == inventorySlots.Length;
+        }*/
+
 
     public void SetSelectedItem(InventoryItem item) { // O gal scriptable object ITEM?
         selectedItem = item;
@@ -96,8 +121,8 @@ public class InventoryManager : MonoBehaviour {
                 Item item = itemInSlot.item;
                 if (itemInUse) {
                     itemInSlot.itemCount--;
-                    if (itemInSlot.itemCount <= 0) { 
-                        Destroy(itemInSlot.gameObject);  
+                    if (itemInSlot.itemCount <= 0) {
+                        Destroy(itemInSlot.gameObject);
                         // TODO: FIX STACKABLE ITEMS, SO THAT COUNT ALWAYS SHOWS IF TYPE IS STACKABLE.
                     }
                     else {
@@ -112,14 +137,4 @@ public class InventoryManager : MonoBehaviour {
     }
 
 
-    /*    public Item GetSelectedItem() {
-            InventorySlot slot = inventorySlots[selectedSlot]; // GET THIS IN OTHER METHOD
-            //InventorySlot slot = inventoryItem.Change
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (itemInSlot != null) {
-                return itemInSlot.item;
-            }
-            return null;
-            // turbut reiks refactor code is inventoryItem i inentoryManager, now we dont know which field is selected, only the frame is changing.
-        }*/
 }

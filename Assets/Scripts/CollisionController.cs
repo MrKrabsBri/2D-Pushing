@@ -19,7 +19,8 @@ public class CollisionController : NetworkBehaviour
 
         if (!IsOwner) return;
 
-        Debug.Log("Triggered with: " + other.gameObject.name);
+        // uncomment veliau del testing purposes
+       //Debug.Log("Triggered with: " + other.gameObject.name);
     }
 }
 

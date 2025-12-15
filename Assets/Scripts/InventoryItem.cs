@@ -59,7 +59,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         bool textActive = false;
         itemCountText.text = itemCount.ToString();
         if (item.stackable) {
-            //textActive = itemCount > 1; // jei noresiu paslept skaiciu, kai count = 1
             textActive = true;
         }
 
