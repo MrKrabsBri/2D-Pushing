@@ -57,17 +57,17 @@ public class PlayerMovement : NetworkBehaviour {
             /*facingDirection.Value = -Mathf.Abs(gameObject.transform.localScale.x);*/
 
             // Update scale via RPC
-            UpdateFacingDirectionServerRpc(-Mathf.Abs(transform.localScale.x));
+            UpdateFacingDirectionServerRpc(Mathf.Abs(transform.localScale.x)); // pakeiciau is -Math
 
         }
-        else if (movementDirection.x < 0) {
+        else if (movementDirection.x <= 0) {
             animator.SetBool("MoveToRight", false);
             animator.SetBool("MoveToLeft", true);
 
             /*facingDirection.Value = Mathf.Abs(gameObject.transform.localScale.x);*/
 
             // Update scale via RPC
-            UpdateFacingDirectionServerRpc(Mathf.Abs(transform.localScale.x));
+            UpdateFacingDirectionServerRpc(-Mathf.Abs(transform.localScale.x)); // pakeiciau is Math i -Math
 
         }
 
