@@ -62,9 +62,9 @@ public class Forfun : NetworkBehaviour {
             Destroy(spawnedObjectTransform.gameObject);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+/*        if (Input.GetKeyDown(KeyCode.Space)) {
             PrintMessageServerRpc(new ServerRpcParams());
-        }
+        }*/
     }
     public override void OnNetworkSpawn() {
         randomNumber.OnValueChanged += (MyCustomData previousValue, MyCustomData newValue) => {
@@ -87,16 +87,16 @@ public class Forfun : NetworkBehaviour {
         Debug.Log("testingClientRpc");
     }
 
-    [ServerRpc]
+/*    [ServerRpc]
     void PrintMessageServerRpc(ServerRpcParams serverRpcParams) {
         PrintMessageClientRpc();
-    }
+    }*/
 
     //-----------------------------------------------------------------------------------
     //clientrpc - by default bet kuris client gali aktyvuoti, visi clients matys.
-    [ClientRpc]
+  /*  [ClientRpc]
     void PrintMessageClientRpc() {
-        // All clients (including sender) show letter Z
+        // All clients (including sender) show jump
         Debug.Log("A client clicked Jump, All clients are shown jump");
-    }
+    }*/
 }

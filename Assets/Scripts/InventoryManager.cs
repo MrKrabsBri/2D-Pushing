@@ -55,6 +55,7 @@ public class InventoryManager : MonoBehaviour {
         // EDIT #########################
         // Check if any slot has the same item with count lower than max
         // TODO: checkas veikia kai jis yra ant pickable item script.
+        // TODO 26.05.04 - padaryk, kad itemai stackintusi i viena stack, o ne i atskirus.
         if (!InventoryIsFull()) {
             for (int i = 0; i < inventorySlots.Length; i++) {
                 InventorySlot slot = inventorySlots[i];

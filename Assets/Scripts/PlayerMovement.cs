@@ -47,29 +47,51 @@ public class PlayerMovement : NetworkBehaviour {
 
         movementDirection = new Vector3(moveHorizontalX, moveVerticalY, 0).normalized;
         transform.position += (movementDirection * playerSpeed * Time.fixedDeltaTime);
-        animator.SetFloat("Speed", Mathf.Abs(moveHorizontalX * playerSpeed));
+        // animator.SetFloat("Speed", Mathf.Abs(moveHorizontalX * playerSpeed));
+        // Only set animation speed if actually moving
+        if (moveHorizontalX != 0 || moveVerticalY != 0) {
+            float speed = movementDirection.magnitude * playerSpeed;
+            animator.SetFloat("Speed", speed);
+        }
+        else {
+            animator.SetFloat("Speed", 0);
+        }
 
 
-        if (movementDirection.x > 0) {
+        /*        if (movementDirection.x > 0) {
+                    animator.SetBool("MoveToLeft", false);
+                    animator.SetBool("MoveToRight", true);
+
+                    *//*facingDirection.Value = -Mathf.Abs(gameObject.transform.localScale.x);*//*
+
+                    // Update scale via RPC
+                    UpdateFacingDirectionServerRpc(Mathf.Abs(transform.localScale.x)); // pakeiciau is -Math
+
+                }
+                else if (movementDirection.x <= 0) {
+                    animator.SetBool("MoveToRight", false);
+                    animator.SetBool("MoveToLeft", true);
+
+                    *//*facingDirection.Value = Mathf.Abs(gameObject.transform.localScale.x);*//*
+
+                    // Update scale via RPC
+                    UpdateFacingDirectionServerRpc(-Mathf.Abs(transform.localScale.x)); // pakeiciau is Math i -Math
+
+                }*/
+
+        // Only update facing direction when moving horizontally
+        if (moveHorizontalX > 0) {
             animator.SetBool("MoveToLeft", false);
             animator.SetBool("MoveToRight", true);
-
-            /*facingDirection.Value = -Mathf.Abs(gameObject.transform.localScale.x);*/
-
-            // Update scale via RPC
-            UpdateFacingDirectionServerRpc(Mathf.Abs(transform.localScale.x)); // pakeiciau is -Math
-
+            UpdateFacingDirectionServerRpc(Mathf.Abs(transform.localScale.x));
         }
-        else if (movementDirection.x <= 0) {
+        else if (moveHorizontalX < 0) { // Changed from <= to <
             animator.SetBool("MoveToRight", false);
             animator.SetBool("MoveToLeft", true);
-
-            /*facingDirection.Value = Mathf.Abs(gameObject.transform.localScale.x);*/
-
-            // Update scale via RPC
-            UpdateFacingDirectionServerRpc(-Mathf.Abs(transform.localScale.x)); // pakeiciau is Math i -Math
-
+            UpdateFacingDirectionServerRpc(-Mathf.Abs(transform.localScale.x));
         }
+        // If moveHorizontalX == 0, don't update facing direction (keeps last direction)
+
 
     }
     /*    public void Update() {
