@@ -24,10 +24,10 @@ public class Player : NetworkBehaviour {
         //if hp <=0 , die
     }
 
-    void Awake() {
-        monsterBat = GameObject.Find("Enemy_Bat").GetComponent<Monster>();
-        Debug.Log("found a monster: " + monsterBat.name);
-    }
+    //void Awake() {
+    //    monsterBat = GameObject.Find("Enemy_Bat").GetComponent<Monster>();
+    //    Debug.Log("found a monster: " + monsterBat.name);
+    //}
 
     void Update() {
 
