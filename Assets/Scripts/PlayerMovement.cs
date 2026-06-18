@@ -40,6 +40,7 @@ public class PlayerMovement : NetworkBehaviour {
             return;
         }
 
+
         // Move();
 
         moveHorizontalX = Input.GetAxisRaw("Horizontal");
@@ -103,6 +104,7 @@ public class PlayerMovement : NetworkBehaviour {
     [ServerRpc]
     void UpdateFacingDirectionServerRpc(float newScaleX) {
         // Notify all clients of the change
+        gameObject.transform.localScale = new Vector3(newScaleX, transform.localScale.y, transform.localScale.z);
         UpdateFacingDirectionClientRpc(newScaleX);
     }
 
