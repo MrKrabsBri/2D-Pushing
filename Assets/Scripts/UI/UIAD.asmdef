@@ -1,0 +1,20 @@
+{
+    "name": "UiAD",
+    "rootNamespace": "",
+    "references": [
+        "Krabs.InventoryAD",
+        "Unity.Netcode.Runtime",
+        "Unity.Collections",
+        "NetworkingAD",
+        "InventoryAD"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

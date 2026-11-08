@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 986eedde999a0a9478193bce54b5a68a, type: 3}
+  m_Script: {fileID: 11500000, guid: 80abba973af790240b201bcd75ae8ff1, type: 3}
   m_Name: Sword (Tier 1)
   m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemName: Swordy
   tile: {fileID: 0}
   type: 3
   actionType: 3

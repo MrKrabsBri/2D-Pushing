@@ -1,8 +1,9 @@
 using UnityEngine;
 
 public class DemoSpawnButton : MonoBehaviour {
+    //TODO: add collections to assembly reference
     public InventoryManager inventoryManager;
-    public Item[] itemsToPickup;
+    public ItemData[] itemsToPickup;
 
     public void PickupItem(int id) {
         bool result = inventoryManager.AddItemToNextEmptySlot(itemsToPickup[id]);
@@ -10,14 +11,14 @@ public class DemoSpawnButton : MonoBehaviour {
             Debug.Log("Item added");
         }
         else {
-            //Debug.Log("INVENTORY IS FULL");
+            Debug.Log("Item not added, INVENTORY IS FULL");
         }
     }
 
     public void GetSelectedItemForButton() {
         //InventoryItem itemSelected = InventoryManager.Instance.GetSelectedItem();
         bool itemIsInUse = false;
-        Item receivedItem = inventoryManager.GetSelectedItem(itemIsInUse);
+        ItemData receivedItem = inventoryManager.GetSelectedItem(itemIsInUse);
         if (receivedItem != null) {
             Debug.Log("RECEIVED ITEM: " + receivedItem);
         }
@@ -29,7 +30,7 @@ public class DemoSpawnButton : MonoBehaviour {
     public void UseSelectedItemForButton() {
         //InventoryItem itemSelected = InventoryManager.Instance.GetSelectedItem();
         bool itemIsInUse = true;
-        Item receivedItem = inventoryManager.GetSelectedItem(itemIsInUse);
+        ItemData receivedItem = inventoryManager.GetSelectedItem(itemIsInUse);
         if (receivedItem != null) {
             Debug.Log("USED ITEM: " + receivedItem);
         }
@@ -41,7 +42,7 @@ public class DemoSpawnButton : MonoBehaviour {
     public void UseSelectedInventoryItem() {
         //InventoryItem itemSelected = InventoryManager.Instance.GetSelectedItem();
         bool itemIsInUse = true;
-        Item receivedItem = inventoryManager.GetSelectedItem(itemIsInUse);
+        ItemData receivedItem = inventoryManager.GetSelectedItem(itemIsInUse);
         if (receivedItem != null) {
             Debug.Log("USED ITEM: " + receivedItem);
         }
